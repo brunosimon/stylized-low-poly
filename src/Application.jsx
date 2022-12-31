@@ -6,7 +6,7 @@ export default function Application()
     return <Canvas
         camera={ {
             fov: 35,
-            position: [ - 6, 4, 2 ]
+            position: [ 2, 4, 6 ]
         } }
     >
         <Experience />
