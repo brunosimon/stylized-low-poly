@@ -7,7 +7,13 @@ const planeGometry = new PlaneGeometry()
 const titleMaterial = new MeshBasicMaterial()
 const detailsMaterial = new MeshBasicMaterial({ opacity: 0.65, transparent: true })
 
-export default function Model({ path, name, details, position=[ 0, 0, 0 ] })
+export default function Model({
+    path,
+    name,
+    details,
+    position = [ 0, 0, 0 ],
+    textPosition = [ 0, 0, 0 ]
+})
 {
     const [ material ] = useState(() => new MeshBasicMaterial({ side: DoubleSide }))
     const model = useGLTF(path)
@@ -18,6 +24,7 @@ export default function Model({ path, name, details, position=[ 0, 0, 0 ] })
         material.map = mesh.material.map
         material.needsUpdate = true
         mesh.material = material
+        // console.log(mesh.geometry.attributes.position)
     }, [ model ])
     
     return <group position={ position }>
@@ -38,7 +45,7 @@ export default function Model({ path, name, details, position=[ 0, 0, 0 ] })
         />
 
         <group
-            position={ [ - 1.5, -0.3, 0 ] }
+            position={ textPosition }
         >
             <Text
                 // font="./fonts/aboreto-v2-latin-regular.woff"
