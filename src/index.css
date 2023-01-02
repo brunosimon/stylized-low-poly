@@ -28,6 +28,7 @@ body,
     border: none;
     cursor: pointer;
     pointer-events: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .button .icon

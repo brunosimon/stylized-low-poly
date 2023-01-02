@@ -13,7 +13,7 @@ export default function Interface()
                 <div className="arrow"></div>
             </div>
         </button>
-        <button className={ `button is-next ${ index < models.length - 2 ? 'is-active' : '' }` } onClick={ next }>
+        <button className={ `button is-next ${ index < models.length - 1 ? 'is-active' : '' }` } onClick={ next }>
             <div className="icon">
                 <div className="arrow"></div>
             </div>

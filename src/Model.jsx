@@ -1,8 +1,8 @@
 import { useGLTF, Text } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
 import { useEffect, useState } from 'react'
 import { PlaneGeometry } from 'three'
 import { DoubleSide, MeshBasicMaterial } from 'three'
+import useStore from './stores/useStore'
 
 const planeGometry = new PlaneGeometry()
 const titleMaterial = new MeshBasicMaterial()
@@ -19,6 +19,7 @@ export default function Model({
     const [ material ] = useState(() => new MeshBasicMaterial({ side: DoubleSide }))
     const [ triangles, setTriangles ] = useState(0)
     const model = useGLTF(path)
+    const orientation = useStore(state => state.orientation)
 
     useEffect(() =>
     {
@@ -29,6 +30,14 @@ export default function Model({
 
         setTriangles((mesh.geometry.index ? mesh.geometry.index.count : mesh.geometry.attributes.position.count) / 3)
     }, [ model ])
+
+    const finalTextPosition = [ ...textPosition ]
+
+    if(orientation === 'portrait')
+    {
+        finalTextPosition[0] = 0
+        finalTextPosition[1] = 2.5
+    }
     
     return <group position={ position }>
 
@@ -48,32 +57,26 @@ export default function Model({
         />
 
         <group
-            position={ textPosition }
+            position={ finalTextPosition }
         >
             <Text
-                // font="./fonts/aboreto-v2-latin-regular.woff"
-                // font="./fonts/darker-grotesque-v7-latin-regular.woff"
-                // font="./fonts/gfs-neohellenic-v25-greek-regular.woff"
                 font="./fonts/port-lligat-sans-v18-latin-regular.woff"
                 position={ [ 0, 0, 0 ] }
                 fontSize={ 0.25 }
                 text={ name.toUpperCase() }
                 textAlign="right"
-                anchorX="right"
+                anchorX={ orientation === 'portrait' ? 'center' : 'right' }
                 anchorY="bottom"
                 material={ titleMaterial }
             />
             
             <Text
-                // font="./fonts/aboreto-v2-latin-regular.woff"
-                // font="./fonts/darker-grotesque-v7-latin-regular.woff"
-                // font="./fonts/gfs-neohellenic-v25-greek-regular.woff"
                 font="./fonts/port-lligat-sans-v18-latin-regular.woff"
-                position={ [ 0, 0, 0 ] }
+                position={ [ 0, orientation === 'portrait' ? - 0.1 : 0, 0 ] }
                 fontSize={ 0.15 }
                 text={ [...details, `${triangles} triangles`].join('\n') }
-                textAlign="right"
-                anchorX="right"
+                textAlign={ orientation === 'portrait' ? 'left' : 'right' }
+                anchorX={ orientation === 'portrait' ? 'center' : 'right' }
                 anchorY="top"
                 material={ detailsMaterial }
             />
