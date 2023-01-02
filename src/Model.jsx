@@ -1,4 +1,5 @@
 import { useGLTF, Text } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 import { useEffect, useState } from 'react'
 import { PlaneGeometry } from 'three'
 import { DoubleSide, MeshBasicMaterial } from 'three'
@@ -6,7 +7,7 @@ import { DoubleSide, MeshBasicMaterial } from 'three'
 const planeGometry = new PlaneGeometry()
 const titleMaterial = new MeshBasicMaterial()
 const detailsMaterial = new MeshBasicMaterial({ opacity: 0.65, transparent: true })
-
+console.log(planeGometry.index.count/3)
 export default function Model({
     path,
     name,
@@ -16,6 +17,7 @@ export default function Model({
 })
 {
     const [ material ] = useState(() => new MeshBasicMaterial({ side: DoubleSide }))
+    const [ triangles, setTriangles ] = useState(0)
     const model = useGLTF(path)
 
     useEffect(() =>
@@ -24,7 +26,8 @@ export default function Model({
         material.map = mesh.material.map
         material.needsUpdate = true
         mesh.material = material
-        // console.log(mesh.geometry.attributes.position)
+
+        setTriangles((mesh.geometry.index ? mesh.geometry.index.count : mesh.geometry.attributes.position.count) / 3)
     }, [ model ])
     
     return <group position={ position }>
@@ -68,7 +71,7 @@ export default function Model({
                 font="./fonts/port-lligat-sans-v18-latin-regular.woff"
                 position={ [ 0, 0, 0 ] }
                 fontSize={ 0.15 }
-                text={ details.join('\n') }
+                text={ [...details, `${triangles} triangles`].join('\n') }
                 textAlign="right"
                 anchorX="right"
                 anchorY="top"
