@@ -7,7 +7,7 @@ import { DoubleSide, MeshBasicMaterial } from 'three'
 const planeGometry = new PlaneGeometry()
 const titleMaterial = new MeshBasicMaterial()
 const detailsMaterial = new MeshBasicMaterial({ opacity: 0.65, transparent: true })
-console.log(planeGometry.index.count/3)
+
 export default function Model({
     path,
     name,

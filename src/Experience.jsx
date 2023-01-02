@@ -11,7 +11,13 @@ export default function Experience()
 
     return <>
         <color args={ [ options.background ] } attach="background" />
-        <OrbitControls makeDefault target={ [ 0, 1.75, 0 ] } />
+        <OrbitControls
+            makeDefault
+            target={ [ 0, 1.75, 0 ] }
+            enablePan={ false }
+            minDistance={ 3 }
+            maxDistance={ 20 }
+        />
         <Floor />
         <Models />
     </>
