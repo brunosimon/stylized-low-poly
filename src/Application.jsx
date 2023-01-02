@@ -26,7 +26,7 @@ export default function Application()
         }
     }, [])
 
-    const distanceMultiplier = orientation == 'portrait' ? 2 : 1
+    const distanceMultiplier = orientation == 'portrait' ? 2.5 : 1
 
     return <>
         <Leva collapsed />
