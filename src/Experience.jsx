@@ -13,7 +13,7 @@ export default function Experience()
         <color args={ [ options.background ] } attach="background" />
         <OrbitControls
             makeDefault
-            target={ [ 0, 1.75, 0 ] }
+            target={ [ 0, 1.6, 0 ] }
             enablePan={ false }
             minDistance={ 3 }
             maxDistance={ 20 }
