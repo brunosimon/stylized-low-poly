@@ -9,6 +9,16 @@ export default create((set) =>
         models: [
             {
                 id: uniqid(),
+                path: './models/simple-table/model.glb',
+                textPosition: [ -2.6, 0.15, 0 ],
+                name: 'Simple Table',
+                details: [
+                    '03/01/2023',
+                    '4 hours'
+                ]
+            },
+            {
+                id: uniqid(),
                 path: './models/simple-anvil/model.glb',
                 textPosition: [ -2.6, -0.3, 0 ],
                 name: 'Simple Anvil',
