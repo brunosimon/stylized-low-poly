@@ -9,6 +9,16 @@ export default create((set) =>
         models: [
             {
                 id: uniqid(),
+                path: './models/skull-candle/model.glb',
+                textPosition: [ -2, 0, 0 ],
+                name: 'Lantern Pole',
+                details: [
+                    '09/01/2023',
+                    '5 hours'
+                ]
+            },
+            {
+                id: uniqid(),
                 path: './models/lantern-pole/model.glb',
                 textPosition: [ -1.6, -0.3, 0 ],
                 name: 'Lantern Pole',

@@ -25,6 +25,7 @@ export default function Model({
     {
         const mesh = model.scene.children[0]
         material.map = mesh.material.map
+        material.transparent = mesh.material.transparent
         material.needsUpdate = true
         mesh.material = material
 
