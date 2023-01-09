@@ -11,7 +11,7 @@ export default create((set) =>
                 id: uniqid(),
                 path: './models/skull-candle/model.glb',
                 textPosition: [ -2, 0, 0 ],
-                name: 'Lantern Pole',
+                name: 'Skull Candle',
                 details: [
                     '09/01/2023',
                     '5 hours'
