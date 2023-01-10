@@ -16,18 +16,25 @@ export default function Model({
     textPosition = [ 0, 0, 0 ]
 })
 {
-    const [ material ] = useState(() => new MeshBasicMaterial({ side: DoubleSide }))
+    const [ modelMaterial ] = useState(() => new MeshBasicMaterial())
+    const [ textureMaterial ] = useState(() => new MeshBasicMaterial({ side: DoubleSide }))
     const [ triangles, setTriangles ] = useState(0)
     const model = useGLTF(path)
     const orientation = useStore(state => state.orientation)
+    const mode = useStore(state => state.mode)
+    modelMaterial.wireframe = mode === 'wireframe'
 
     useEffect(() =>
     {
         const mesh = model.scene.children[0]
-        material.map = mesh.material.map
-        material.transparent = mesh.material.transparent
-        material.needsUpdate = true
-        mesh.material = material
+        modelMaterial.map = mesh.material.map
+        modelMaterial.transparent = mesh.material.transparent
+        modelMaterial.needsUpdate = true
+        mesh.material = modelMaterial
+
+        textureMaterial.map = mesh.material.map
+        textureMaterial.transparent = mesh.material.transparent
+        textureMaterial.needsUpdate = true
 
         setTriangles((mesh.geometry.index ? mesh.geometry.index.count : mesh.geometry.attributes.position.count) / 3)
     }, [ model ])
@@ -54,7 +61,7 @@ export default function Model({
             position-x={ 1.5 }
             scale={ 2 }
             geometry={ planeGometry }
-            material={ material }
+            material={ textureMaterial }
         />
 
         <group

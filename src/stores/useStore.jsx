@@ -4,6 +4,13 @@ import uniqid from 'uniqid'
 export default create((set) =>
 {
     return {
+        mode: 'plain',
+        setMode: (mode) =>
+        {
+            set(() => {
+                return { mode: mode }
+            })
+        },
         orientation: window.innerWidth < window.innerHeight ? 'portrait' : 'landscape',
         index: 0,
         models: [

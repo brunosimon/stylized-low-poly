@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+button
+{
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+}
+
 html,
 body,
 #root
@@ -85,4 +93,81 @@ body,
 .button:hover .icon .arrow
 {
     opacity: 1;
+}
+
+.footer
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    /* background: red; */
+    pointer-events: none;
+}
+
+.footer .group
+{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.footer .label
+{
+    margin-right: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #eeeeee;
+    opacity: 0.65;
+}
+
+.footer .choice
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+    background: #11111188;
+    transform: rotate(45deg);
+    color: #ffffff;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.footer .choice.is-active
+{
+    background: #44444488;
+}
+
+.footer .choice .icon
+{
+    display: block;
+    width: 14px;
+    height: 14px;
+    transform: rotate(-45deg);
+    background-size: cover;
+    opacity: 0.65;
+    transition: opacity 0.15s;
+}
+
+.footer .choice:hover .icon
+{
+    opacity: 1;
+}
+
+.footer .choice.is-plain .icon
+{
+    background-image: url('./icons/plain.svg');
+}
+
+.footer .choice.is-wireframe .icon
+{
+    background-image: url('./icons/wireframe.svg');
 }
