@@ -33,8 +33,9 @@ export default function Models()
     useFrame((state) =>
     {
         const target = - distanceInterModel * index
-        const delta = state.clock.getDelta()
-        damp(group.current.position, 'x', target, 0.008, delta)
+        const delta = state.clock.delta
+        console.log(delta)
+        damp(group.current.position, 'x', target, 0.12, delta)
     })
     
     return <group ref={ group } position={ [ 0, 1.5, 0 ] }>
