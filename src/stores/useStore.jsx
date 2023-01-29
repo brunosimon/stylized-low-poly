@@ -16,6 +16,16 @@ export default create((set) =>
         models: [
             {
                 id: uniqid(),
+                path: './models/furnace/model.glb',
+                textPosition: [ -2.9, 0.3, 0 ],
+                name: 'Furnace',
+                details: [
+                    '29/01/2023',
+                    '18 hours'
+                ]
+            },
+            {
+                id: uniqid(),
                 path: './models/skull-candle/model.glb',
                 textPosition: [ -2, 0, 0 ],
                 name: 'Skull Candle',

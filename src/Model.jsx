@@ -27,9 +27,11 @@ export default function Model({
     useEffect(() =>
     {
         const mesh = model.scene.children[0]
+        mesh.material.map.anisotropy = 16
         modelMaterial.map = mesh.material.map
         modelMaterial.transparent = mesh.material.transparent
         modelMaterial.needsUpdate = true
+        modelMaterial.side = DoubleSide
         mesh.material = modelMaterial
 
         textureMaterial.map = mesh.material.map
