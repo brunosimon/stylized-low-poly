@@ -6,7 +6,7 @@ import Interface from './Interface'
 export default function Application()
 {
     return <>
-        <Leva collapsed />
+        <Leva collapsed hidden />
         <Canvas
             flat
             camera={ {

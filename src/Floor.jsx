@@ -1,5 +1,6 @@
-import { Grid, ContactShadows } from '@react-three/drei'
-import { useControls, folder } from 'leva'
+import { Grid, ContactShadows, useTexture } from '@react-three/drei'
+import { useControls } from 'leva'
+import './Materials/FloorMaterial/FloorMaterial.jsx'
 
 export default function Floor()
 {
@@ -28,12 +29,18 @@ export default function Floor()
         blur: { value: 1.5, min: 0, max: 10 },
     })
 
+    const floorColorTexture = useTexture('./models/floor-grass-dirt/color.jpg')
+
     return <>
         <ContactShadows
             position={ [ 0, 0, 0 ] }
             resolution={ 512 }
             { ...contactShadowOptions }
         />
-        <Grid position={ [ 0, -0.01, 0 ] } args={ gridOptions.gridSize } { ...gridOptions } />
+        {/* <Grid position={ [ 0, -0.01, 0 ] } args={ gridOptions.gridSize } { ...gridOptions } /> */}
+        <mesh position-y={ - 0.02 } rotation={ [ - Math.PI * 0.5, 0, - Math.PI * 0.5 ] } scale={ 10 }>
+            <planeGeometry />
+            <floorMaterial colorTexture={ floorColorTexture } transparent />
+        </mesh>
     </>
 }
