@@ -11,6 +11,13 @@ export default create((set) =>
                 return { mode: mode }
             })
         },
+        floor: 'texture',
+        setFloor: (floor) =>
+        {
+            set(() => {
+                return { floor: floor }
+            })
+        },
         orientation: window.innerWidth < window.innerHeight ? 'portrait' : 'landscape',
         index: 0,
         models: [

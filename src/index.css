@@ -133,7 +133,7 @@ body,
     justify-content: center;
     width: 30px;
     height: 30px;
-    margin-right: 12px;
+    margin-right: 14px;
     background: #11111188;
     transform: rotate(45deg);
     color: #ffffff;
@@ -143,16 +143,18 @@ body,
 
 .footer .choice.is-active
 {
-    background: #44444488;
+    background: #424242;
 }
 
 .footer .choice .icon
 {
     display: block;
-    width: 14px;
-    height: 14px;
+    width: 100%;
+    height: 100%;
     transform: rotate(-45deg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     opacity: 0.65;
     transition: opacity 0.15s;
 }
@@ -162,12 +164,32 @@ body,
     opacity: 1;
 }
 
-.footer .choice.is-plain .icon
+.footer .choice.is-mode-plain .icon
 {
-    background-image: url('./icons/plain.svg');
+    background-image: url('./icons/modePlain.svg');
+    background-size: 14px 14px;
 }
 
-.footer .choice.is-wireframe .icon
+.footer .choice.is-mode-wireframe .icon
 {
-    background-image: url('./icons/wireframe.svg');
+    background-image: url('./icons/modeWireframe.svg');
+    background-size: 14px 14px;
+}
+
+.footer .choice.is-floor-texture .icon
+{
+    background-image: url('./icons/floorTexture.svg');
+    background-size: 14px 14px;
+}
+
+.footer .choice.is-floor-grid .icon
+{
+    background-image: url('./icons/floorGrid.svg');
+    background-size: 14px 14px;
+}
+
+.footer .choice.is-floor-none .icon
+{
+    background-image: url('./icons/floorNone.svg');
+    background-size: 14px 14px;
 }
