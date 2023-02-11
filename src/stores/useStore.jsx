@@ -23,6 +23,17 @@ export default create((set) =>
         models: [
             {
                 id: uniqid(),
+                path: './models/curvy-sword/model.glb',
+                textPosition: [ -1.75, 0.3, 0 ],
+                name: 'Curvy Sword',
+                details: [
+                    '11/02/2023',
+                    '7 hours'
+                ],
+                referenceLink: 'https://www.artstation.com/artwork/NYGLD'
+            },
+            {
+                id: uniqid(),
                 path: './models/furnace/model.glb',
                 textPosition: [ -2.9, 0.3, 0 ],
                 name: 'Furnace',
