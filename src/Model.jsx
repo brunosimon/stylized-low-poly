@@ -13,11 +13,13 @@ const detailsMaterial = new MeshBasicMaterial({ opacity: 0.65, transparent: true
 
 function Button(props)
 {
+    const orientation = useStore(state => state.orientation)
     const hoverLine = useRef()
     const [ linkHover, setLinkHover ] = useState(false)
     const { link, ...restProps } = props
     const width = 1.53
     const height = 0.35
+    const x = orientation === 'portrait' ? width * 0.5 : 0
 
     const pointerEnter = () =>
     {
@@ -42,53 +44,55 @@ function Button(props)
     })
 
     return <group { ...restProps }>
-        <mesh
-            position={ [ - width * 0.5, - height * 0.5, 0 ] }
-            onPointerEnter={ pointerEnter }
-            onPointerLeave={ pointerLeave }
-            onClick={ click }
-            visible={ false }
-        >
-            <planeGeometry args={ [ width, height ] } />
-            <meshBasicMaterial />
-        </mesh>
-        <Line
-            points={ [
-                0, 0, 0,
-                0, - height, 0,
-                - width, - height, 0,
-                - width, 0, 0,
-                0, 0, 0,
-            ] }
-            lineWidth={ 2 }
-            color="#ffffff"
-        />
-        <Line
-            ref={ hoverLine }
-            position={ [ 0, 0, 0 ] }
-            points={ [
-                0, 0, 0,
-                0, - height, 0,
-                - width, - height, 0,
-                - width, 0, 0,
-                0, 0, 0,
-            ] }
-            lineWidth={ 2 }
-            color="#ffffff"
-            opacity={ 0.25 }
-            transparent={ true }
-        />
-        <Text
-            font="./fonts/port-lligat-sans-v18-latin-regular.woff"
-            position={ [ - width * 0.5, - height * 0.5, 0 ] }
-            fontSize={ 0.15 }
-            text="ORIGINAL ARTWORK"
-            textAlign="right"
-            anchorX="center"
-            anchorY="middle"
-            material={ titleMaterial }
-        />
+        <group position-x={ x }>
+            <mesh
+                position={ [ - width * 0.5, - height * 0.5, 0 ] }
+                onPointerEnter={ pointerEnter }
+                onPointerLeave={ pointerLeave }
+                onClick={ click }
+                visible={ false }
+            >
+                <planeGeometry args={ [ width, height ] } />
+                <meshBasicMaterial />
+            </mesh>
+            <Line
+                points={ [
+                    0, 0, 0,
+                    0, - height, 0,
+                    - width, - height, 0,
+                    - width, 0, 0,
+                    0, 0, 0,
+                ] }
+                lineWidth={ 2 }
+                color="#ffffff"
+            />
+            <Line
+                ref={ hoverLine }
+                position={ [ 0, 0, 0 ] }
+                points={ [
+                    0, 0, 0,
+                    0, - height, 0,
+                    - width, - height, 0,
+                    - width, 0, 0,
+                    0, 0, 0,
+                ] }
+                lineWidth={ 2 }
+                color="#ffffff"
+                opacity={ 0.25 }
+                transparent={ true }
+            />
+            <Text
+                font="./fonts/port-lligat-sans-v18-latin-regular.woff"
+                position={ [ - width * 0.5, - height * 0.5, 0 ] }
+                fontSize={ 0.15 }
+                text="ORIGINAL ARTWORK"
+                textAlign="right"
+                anchorX="center"
+                anchorY="middle"
+                material={ titleMaterial }
+            />
         
+        </group>
     </group>
 }
 
@@ -187,7 +191,7 @@ export default function Model({
                 material={ detailsMaterial }
             />
 
-            { referenceLink && <Button link={ referenceLink } position-y={ - detailsHeight - 0.1 } /> }
+            { referenceLink && <Button link={ referenceLink } position-y={ - detailsHeight - (orientation === 'portrait' ? 0.2 : 0.1) } /> }
         </group>
         
         {/* Axes helper */}
